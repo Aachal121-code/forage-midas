@@ -7,31 +7,31 @@ public class TransactionRecord {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @ManyToOne
-    @JoinColumn(name = "sender_id", nullable = false)
     private UserRecord sender;
 
     @ManyToOne
-    @JoinColumn(name = "recipient_id", nullable = false)
     private UserRecord recipient;
 
     @Column(nullable = false)
     private float amount;
 
+    @Column(nullable = false)
+    private float incentive;
+
     protected TransactionRecord() {
-        // Default constructor for JPA
     }
 
-    // Add this constructor
-    public TransactionRecord(UserRecord sender, UserRecord recipient, float amount) {
+    public TransactionRecord(UserRecord sender, UserRecord recipient, float amount, float incentive) {
         this.sender = sender;
         this.recipient = recipient;
         this.amount = amount;
+        this.incentive = incentive;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -45,5 +45,9 @@ public class TransactionRecord {
 
     public float getAmount() {
         return amount;
+    }
+
+    public float getIncentive() {
+        return incentive;
     }
 }
